@@ -18,7 +18,5 @@ const readUsers = (res) => {
 };
 
 server.listen(PORT, () => {
-  console.log(
-    `server is running on hasUncaughtExceptionCaptureCallback; http://localhost:${PORT}`
-  );
+  console.log(`http://localhost:${PORT}`);
 });

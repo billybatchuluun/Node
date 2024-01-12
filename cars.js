@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
 //     console.log(previousData);
 //   });
 // };
-const PORT = 6060;
+const PORT = 7000;
 server.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });

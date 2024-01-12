@@ -29,12 +29,12 @@ create({
 //   })
 // };
 
-const delet = (id) => {
-  fs.readFile("input.json", "utf-8", (err, json) => {
-    if (err) console.log("errror:", err);
-    const data = JSON.parse(json);
-    const newArr = data.filter((info) => info.id !== id);
-    console.log(newArr);
-  });
-};
-delet(2);
+// const delet = (id) => {
+//   fs.readFile("input.json", "utf-8", (err, json) => {
+//     if (err) console.log("errror:", err);
+//     const data = JSON.parse(json);
+//     const newArr = data.filter((info) => info.id !== id);
+//     console.log(newArr);
+//   });
+// };
+// delet(2);
