@@ -1,10 +1,7 @@
-const fs = require("node:fs");
-
-// const content = "Some other content!";
-
-fs.writeFile("/Users/23LP6327/desktop/node/Input.txt", content, (err) => {
-  if (err) {
-    console.error(err);
-  }
-  console.log(content);
-});
+const fs = require("fs");
+const writeUsers = (res) => {
+  const json = fs.readFileSync("cars.json", "utf-8");
+  const data = JSON.parse(json);
+  return data;
+};
+exports.writeUsers = writeUsers;

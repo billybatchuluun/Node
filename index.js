@@ -1,57 +1,51 @@
-const { create } = require("domain");
+// const { create } = require("domain");
+// const express = require("express");
+// const { restart } = require("nodemon");
+// const fs = require("fs");
 const express = require("express");
-const { restart } = require("nodemon");
-const fs = require("fs");
+const multer = require(`multer`);
+const upload = multer({ dest: "uploads/" });
+const { readUsers } = require("./user");
+const { writeUsers } = require("./write");
+const { createData } = require("./create");
+const { deleteData } = require("./delete");
+
+const cors = require("cors");
 
 const port = 8000;
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
+
 app.get("/", (req, res) => {
   res.send("Hello Bilguun");
 });
 
-app.get("/user", (req, res) =>
-  res.send([
-    {
-      id: 11,
-      first_name: "Billy",
-      last_name: "Batch",
-      email: "Billy@google.co.jp",
-      gender: "Male",
-      ip_address: "211.224.86.93",
-    },
-  ])
-);
-
-app.post("/reader", (req, res) => {
-  res.send({
-    id: 19,
-    first_name: "Billy",
-    last_name: "Batch",
-    email: "Billy@google.co.jp",
-    gender: "Male",
-    ip_address: "211.224.86.94",
-  });
-
-  create({
-    id: 18,
-    first_name: "Bilguun",
-    last_name: "Batchuluun",
-    email: "Billy@google.co.jp",
-    gender: "Male",
-    ip_address: "211.224.86.95",
-  });
+app.get("/users", (req, res) => {
+  const users = readUsers();
+  res.send(users);
 });
-
-// const readUsers = (res) => {
-//   fs.readFile("input.json", "utf-8", (err, text) => {
-//     if (err) {
-//       return console.error(err);
-//     }
-//     const users = JSON.parse(text);
-//     res.writeHead(200, { "Content-Type": "application/json" });
-//     res.end(JSON.stringify(users));
-//   });
-// };
+app.post("/posts", (req, res) => {
+  const post = createData({
+    id: 12,
+    task_name: "Billy",
+    task_date: "8/30/2023",
+    team_name: "LetsGo",
+  });
+  res.send(post);
+});
+app.delete("/deletes", (req, res) => {
+  const delet = deleteData(10);
+  res.send(delet);
+});
+app.get("/cars", (req, res) => {
+  const cars = writeUsers();
+  res.send(cars);
+});
 
 app.listen(port, () => {
   console.log("Server is running on http://localhost:" + port);
