@@ -50,3 +50,7 @@ app.get("/cars", (req, res) => {
 app.listen(port, () => {
   console.log("Server is running on http://localhost:" + port);
 });
+
+const middleware = (req, res, next) => {
+  console.log(req);
+};
